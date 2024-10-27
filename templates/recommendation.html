@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Car Recommendation</h1>
+        <form method="POST">
+            <label for="family_members">Family Members:</label>
+            <input type="number" id="family_members" name="family_members" placeholder="Enter number of family members" required>
+            
+            <label for="budget">Budget (in Lacs):</label>
+            <input type="number" id="budget" name="budget" placeholder="Enter your budget" required>
+            
+            <label for="fuel_type">Fuel Type:</label>
+            <select id="fuel_type" name="fuel_type">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+                <option value="Anything">Anything</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if results %}
+        <h2>Recommendations:</h2>
+        <ul>
+            {% for result in results %}
+            <li>{{ result }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="back-button">Back to Menu</a>
+    </div>
+
+    <footer>
+        <p>Powered by Car Recommendation System</p>
+    </footer>
+</body>
+</html>
